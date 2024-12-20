@@ -13,34 +13,27 @@ struct LoginView: View {
     @State var password: String = ""
 
     var body: some View {
-        VStack{
-            HeaderView()
-            Form{
-                TextField("Email Address", text: $email)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                SecureField("Email Address", text: $password)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                Button{
-                    
-                }label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(Color.blue)
-                        Text("Login")
-                            .foregroundColor(Color.white)
-                            .bold()
+        NavigationView{
+            VStack{
+                HeaderView(title: "To Do List", subtitle: "Get things done", angle: 15, backgroundColor: .pink)
+                Form{
+                    TextField("Email ", text: $email)
+                        .textFieldStyle(DefaultTextFieldStyle())
+                        .autocapitalization(.none)
+                    SecureField("Password ", text: $password)
+                        .textFieldStyle(DefaultTextFieldStyle())
+                    TLButton(title: "Login", backgroundColor: .blue){
+                        
                     }
                 }
-            }
-            VStack{
-                Text("New around here?")
-                Button("Create an account"){
-                    
+                VStack{
+                    Text("New around here?")
+                    NavigationLink("Create an account", destination: RegisterView())
                 }
+                .padding(.bottom, 50)
+                Spacer()
+                
             }
-            .padding(.bottom, 50)
-            Spacer()
-            
         }
     }
 }
